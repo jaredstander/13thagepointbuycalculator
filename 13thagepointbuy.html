@@ -1,0 +1,77 @@
+<html>
+<head>
+  <title>13th Age Point Buy Calculator</title>
+  <style>
+    body {margin:0; padding:3%; font-family:sans-serif;}
+    #main {background-color:#ffdddd; padding:2%; display:inline-block; border-radius: 30px; -moz-border-radius:30px;}
+    #points {margin:0; padding:1%; text-align:center;}
+    #stats {margin:0; padding:1%;}
+    input {text-align:center;}
+  </style>
+  <script type="text/javascript">
+    // Point Values:
+    // 18 = 16    == (n - 8) + 6 (diff 10)    MOD +4
+    // 17 = 13    == (n - 8) + 4 (diff 9)     MOD +3
+    // 16 = 10    == (n - 8) + 2 (diff 8)     MOD +3
+    // 15 = 8     == (n - 8) + 1 (diff 7)     MOD +2
+    // 14 = 6     == (n - 8)                  MOD +2
+    // 13 = 5     == (n - 8)                  MOD +1
+    // 12 = 4     == (n - 8)                  MOD +1
+    // 11 = 3     == (n - 8)                  MOD +0
+    // 10 = 2     == (n - 8)                  MOD +0
+    // 9 = 1      == (n - 8)                  MOD -1
+    // 8 = 0      == (n - 8)                  MOD -1
+    function getAbilityMod(abilityScore) { return parseFloat((Math.floor(abilityScore / 2)) - 5); }
+
+    function getPointValue(abilityScore) {
+      //
+    }
+    
+    function minusButton(abilityScore) {
+      if(abilityScore > 8) {
+        updateAbilityScore(abilityScore--);
+      }
+    }
+
+    function plusButton(abilityScore) {
+      if(abilityScore < 18) {
+        updateAbilityScore(abilityScore++);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="main">
+    <div id="points">
+      <h2>13th Age Point Buy Calculator</h2>
+      <p>Points: <input type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
+      <hr>
+    </div>
+    <div id="stats">
+      <button>-</button>Strength<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+
+      <button>-</button>Dexterity<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+
+      <button>-</button>Constitution<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+
+      <button>-</button>Intellect<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+
+      <button>-</button>Wisdom<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+
+      <button>-</button>Charisma<button>+</button>&nbsp;
+      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
+      <input type="text" value="-1" size="2" disabled></input><br>
+    </div>
+  </div>
+</body>
+</html>
