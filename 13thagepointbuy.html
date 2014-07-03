@@ -5,9 +5,10 @@
     body {margin:0; padding:3%; font-family:sans-serif;}
     #main {background-color:#ffdddd; padding:2%; display:inline-block; border-radius: 30px; -moz-border-radius:30px;}
     #points {margin:0; padding:1%; text-align:center;}
-    #stats {margin:0; padding:1%;}
+    #stats {margin:0; padding:1%; text-align:center;}
     input {text-align:center;}
   </style>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript">
     // Point Values:
     // 18 = 16    == (n - 8) + 6 (diff 10)    MOD +4
@@ -24,53 +25,138 @@
     function getAbilityMod(abilityScore) { return parseFloat((Math.floor(abilityScore / 2)) - 5); }
 
     function getPointValue(abilityScore) {
-      //
+      // return (parseInt(abilityScore) - 8) Does not work starting at 15, will investigate another formula
+      // And in the mean time, I shall use literally the worst method available.
+      var value = 0
+      switch(abilityScore) {
+        case 8:
+          value = 0;
+          break;
+        case 9:
+          value = 1;
+          break;
+        case 10:
+          value = 2;
+          break;
+        case 11:
+          value = 3;
+          break;
+        case 12:
+          value = 4;
+          break;
+        case 13:
+          value = 5;
+          break;
+        case 14:
+          value = 6;
+          break;
+        case 15:
+          value = 8;
+          break;
+        case 16:
+          value = 10;
+          break;
+        case 17:
+          value = 13;
+          break;
+        case 18:
+          value = 16;
+          break;
+      }
+
+      return parseInt(value);
     }
     
-    function minusButton(abilityScore) {
-      if(abilityScore > 8) {
-        updateAbilityScore(abilityScore--);
+    function minusButton() {
+      var pointsLeft = parseInt($("input.points").val());
+      var currentScore = parseInt($(this).parent().find("input.score").val());
+      if(currentScore > 8) {
+        var pointDifference = parseInt(getPointValue(currentScore) - getPointValue(currentScore - 1));
+        $(this).parent().find("input.score").val(currentScore - 1);
+        $("input.points").val(pointsLeft + pointDifference);
+        $(this).parent().find("input.mod").val(getAbilityMod(currentScore - 1));
       }
     }
 
-    function plusButton(abilityScore) {
-      if(abilityScore < 18) {
-        updateAbilityScore(abilityScore++);
+    function plusButton() {
+      var pointsLeft = parseInt($("input.points").val());
+      var currentScore = parseInt($(this).parent().find("input.score").val());
+      if(currentScore < 18) {
+        var pointDifference = parseInt(getPointValue(currentScore + 1) - getPointValue(currentScore));
+        if(pointsLeft >= pointDifference) {
+          var newScore = parseInt(currentScore + 1);
+          $(this).parent().find("input.score").val(currentScore + 1);
+          $("input.points").val(pointsLeft - pointDifference);
+          $(this).parent().find("input.mod").val(getAbilityMod(currentScore + 1));
+        }
       }
     }
+
+    $(document).ready(function(){
+      $("#stats > p").each(function(i, obj) {
+        $(this).find("input.mod").val(getAbilityMod($(this).find("input.score").val()));
+      });
+      $("button.plus").click(plusButton);
+      $("button.minus").click(minusButton);
+    });
   </script>
 </head>
 <body>
   <div id="main">
     <div id="points">
       <h2>13th Age Point Buy Calculator</h2>
-      <p>Points: <input type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
+      <p>Points: <input class="points" type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
       <hr>
     </div>
     <div id="stats">
-      <button>-</button>Strength<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
-
-      <button>-</button>Dexterity<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
-
-      <button>-</button>Constitution<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
-
-      <button>-</button>Intellect<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
-
-      <button>-</button>Wisdom<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
-
-      <button>-</button>Charisma<button>+</button>&nbsp;
-      <input type="text" value="8" min="8" max="18" size="2" maxlength="2"></input>&nbsp;| Mod:&nbsp;
-      <input type="text" value="-1" size="2" disabled></input><br>
+      <p id="str">
+        STR:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
+      <p id="dex">
+        DEX:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
+      <p id="con">
+        CON:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
+      <p id="int">
+        INT:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
+      <p id="wis">
+        WIS:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
+      <p id="cha">
+        CHA:&nbsp;
+        <button class="minus">-</button>
+        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
+        <button class="plus">+</button>
+        &nbsp;| Mod:&nbsp;
+        <input class="mod" type="text" size="2" disabled></input>
+      </p>
     </div>
   </div>
 </body>
