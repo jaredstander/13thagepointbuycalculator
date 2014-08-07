@@ -2,14 +2,17 @@
 <head>
   <title>13th Age Point Buy Calculator</title>
   <meta name="description" content="13th Age Point Buy Calculator">
-  <meta name="keywords" content="13th Age, 13th, Age, Arvchmage, Engine, Archmage Engine, Point, Buy, Point buy">
+  <meta name="keywords" content="13th Age, 13th, Age, Archmage, Engine, Archmage Engine, Point, Buy, Point buy, Pelgrane Press Ltd, Pelgrane, Press, Ltd">
   <meta name="author" content="Jared Stander">
   <style>
     body {margin:0; padding:3%; font-family:sans-serif;}
-    #main {background-color:#ffdddd; padding:2%; display:inline-block; border-radius: 30px; -moz-border-radius:30px;}
+    #main {background-color:#eeeeee; padding:2%; display:inline-block; border-radius: 30px; -moz-border-radius:30px;}
     #points {margin:0; padding:1%; text-align:center;}
     #stats {margin:0; padding:1%; text-align:center;}
+    #race_and_class {margin:0; padding:1%; text-align:center;}
     input {text-align:center;}
+    .stat_label {display:inline-block; width:50px;}
+    .bonus_dropdown {display:inline-block; width:125px;}
   </style>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript">
@@ -108,12 +111,13 @@
   <div id="main">
     <div id="points">
       <h2>13th Age Point Buy Calculator</h2>
-      <p>Points: <input class="points" type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
+      <hr>
+      <p>Points Left: <input class="points" type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
       <hr>
     </div>
     <div id="stats">
       <p id="str">
-        STR:&nbsp;
+        <span class="stat_label">STR:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
@@ -121,7 +125,7 @@
         <input class="mod" type="text" size="2" disabled></input>
       </p>
       <p id="dex">
-        DEX:&nbsp;
+        <span class="stat_label">DEX:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
@@ -129,7 +133,7 @@
         <input class="mod" type="text" size="2" disabled></input>
       </p>
       <p id="con">
-        CON:&nbsp;
+        <span class="stat_label">CON:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
@@ -137,7 +141,7 @@
         <input class="mod" type="text" size="2" disabled></input>
       </p>
       <p id="int">
-        INT:&nbsp;
+        <span class="stat_label">INT:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
@@ -145,7 +149,7 @@
         <input class="mod" type="text" size="2" disabled></input>
       </p>
       <p id="wis">
-        WIS:&nbsp;
+        <span class="stat_label">WIS:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
@@ -153,12 +157,40 @@
         <input class="mod" type="text" size="2" disabled></input>
       </p>
       <p id="cha">
-        CHA:&nbsp;
+        <span class="stat_label">CHA:</span>&nbsp;
         <button class="minus">-</button>
         <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
         <button class="plus">+</button>
         &nbsp;| Mod:&nbsp;
         <input class="mod" type="text" size="2" disabled></input>
+      </p>
+    </div>
+    <div id="race_and_class">
+      <hr>
+      <p>COMING SOON:</p>
+      <p>
+        <span class="bonus_dropdown" disabled >Racial Bonus:</span>&nbsp;
+        <select>
+          <option>-</option>
+          <option>Strength</option>
+          <option>Dexterity</option>
+          <option>Constitution</option>
+          <option>Intellect</option>
+          <option>Wisdom</option>
+          <option>Charisma</option>
+        </select>
+      </p>
+      <p>
+        <span class="bonus_dropdown" disabled >Class Bonus:</span>&nbsp;
+        <select>
+          <option>-</option>
+          <option>Strength</option>
+          <option>Dexterity</option>
+          <option>Constitution</option>
+          <option>Intellect</option>
+          <option>Wisdom</option>
+          <option>Charisma</option>
+        </select>
       </p>
     </div>
   </div>
