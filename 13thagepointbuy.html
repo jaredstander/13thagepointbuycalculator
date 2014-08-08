@@ -1,198 +1,68 @@
 <html>
 <head>
-  <title>13th Age Point Buy Calculator</title>
+  <title>
+    13th Age Point Buy Calculator
+  </title>
   <meta name="description" content="13th Age Point Buy Calculator">
   <meta name="keywords" content="13th Age, 13th, Age, Archmage, Engine, Archmage Engine, Point, Buy, Point buy, Pelgrane Press Ltd, Pelgrane, Press, Ltd">
   <meta name="author" content="Jared Stander">
-  <style>
-    body {margin:0; padding:3%; font-family:sans-serif;}
-    #main {background-color:#eeeeee; padding:2%; display:inline-block; border-radius: 30px; -moz-border-radius:30px;}
-    #points {margin:0; padding:1%; text-align:center;}
-    #stats {margin:0; padding:1%; text-align:center;}
-    #race_and_class {margin:0; padding:1%; text-align:center;}
-    input {text-align:center;}
-    .stat_label {display:inline-block; width:50px;}
-    .bonus_dropdown {display:inline-block; width:125px;}
-  </style>
+  <link rel="stylesheet" type="text/css" href="style/lib.css" />
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script type="text/javascript">
-    // Point Values:
-    // 18 = 16    == (n - 8) + 6 (diff 10)    MOD +4
-    // 17 = 13    == (n - 8) + 4 (diff 9)     MOD +3
-    // 16 = 10    == (n - 8) + 2 (diff 8)     MOD +3
-    // 15 = 8     == (n - 8) + 1 (diff 7)     MOD +2
-    // 14 = 6     == (n - 8)                  MOD +2
-    // 13 = 5     == (n - 8)                  MOD +1
-    // 12 = 4     == (n - 8)                  MOD +1
-    // 11 = 3     == (n - 8)                  MOD +0
-    // 10 = 2     == (n - 8)                  MOD +0
-    // 9 = 1      == (n - 8)                  MOD -1
-    // 8 = 0      == (n - 8)                  MOD -1
-    function getAbilityMod(abilityScore) { return parseFloat((Math.floor(abilityScore / 2)) - 5); }
-
-    function getPointValue(abilityScore) {
-      // return (parseInt(abilityScore) - 8) Does not work starting at 15, will investigate another formula
-      // And in the mean time, I shall use literally the worst method available.
-      var value = 0
-      switch(abilityScore) {
-        case 8:
-          value = 0;
-          break;
-        case 9:
-          value = 1;
-          break;
-        case 10:
-          value = 2;
-          break;
-        case 11:
-          value = 3;
-          break;
-        case 12:
-          value = 4;
-          break;
-        case 13:
-          value = 5;
-          break;
-        case 14:
-          value = 6;
-          break;
-        case 15:
-          value = 8;
-          break;
-        case 16:
-          value = 10;
-          break;
-        case 17:
-          value = 13;
-          break;
-        case 18:
-          value = 16;
-          break;
-      }
-
-      return parseInt(value);
-    }
-    
-    function minusButton() {
-      var pointsLeft = parseInt($("input.points").val());
-      var currentScore = parseInt($(this).parent().find("input.score").val());
-      if(currentScore > 8) {
-        var pointDifference = parseInt(getPointValue(currentScore) - getPointValue(currentScore - 1));
-        $(this).parent().find("input.score").val(currentScore - 1);
-        $("input.points").val(pointsLeft + pointDifference);
-        $(this).parent().find("input.mod").val(getAbilityMod(currentScore - 1));
-      }
-    }
-
-    function plusButton() {
-      var pointsLeft = parseInt($("input.points").val());
-      var currentScore = parseInt($(this).parent().find("input.score").val());
-      if(currentScore < 18) {
-        var pointDifference = parseInt(getPointValue(currentScore + 1) - getPointValue(currentScore));
-        if(pointsLeft >= pointDifference) {
-          var newScore = parseInt(currentScore + 1);
-          $(this).parent().find("input.score").val(currentScore + 1);
-          $("input.points").val(pointsLeft - pointDifference);
-          $(this).parent().find("input.mod").val(getAbilityMod(currentScore + 1));
-        }
-      }
-    }
-
-    $(document).ready(function(){
-      $("#stats > p").each(function(i, obj) {
-        $(this).find("input.mod").val(getAbilityMod($(this).find("input.score").val()));
-      });
-      $("button.plus").click(plusButton);
-      $("button.minus").click(minusButton);
-    });
-  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.7/angular.min.js" type="text/javascript"></script>
+  <script src="script/app.js" type="text/javascript"></script>
+  <script src="script/maincontroller.js" type="text/javascript"></script>
 </head>
 <body>
-  <div id="main">
+  <div id="main" ng-app="13thAgePointBuy" ng-controller="MainController">
     <div id="points">
       <h2>13th Age Point Buy Calculator</h2>
       <hr>
-      <p>Points Left: <input class="points" type="text" value="28" size="2" alt="Remaining buying points." disabled></input></p>
+      <p>Points Left: <span class="key_number">{{pointsLeft}}</span></p>
       <hr>
     </div>
     <div id="stats">
-      <p id="str">
-        <span class="stat_label">STR:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-      <p id="dex">
-        <span class="stat_label">DEX:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-      <p id="con">
-        <span class="stat_label">CON:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-      <p id="int">
-        <span class="stat_label">INT:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-      <p id="wis">
-        <span class="stat_label">WIS:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-      <p id="cha">
-        <span class="stat_label">CHA:</span>&nbsp;
-        <button class="minus">-</button>
-        <input class="score" type="text" value="8" min="8" max="18" size="2" maxlength="2" disabled></input>
-        <button class="plus">+</button>
-        &nbsp;| Mod:&nbsp;
-        <input class="mod" type="text" size="2" disabled></input>
-      </p>
-    </div>
-    <div id="race_and_class">
-      <hr>
-      <p>COMING SOON:</p>
       <p>
-        <span class="bonus_dropdown" disabled >Racial Bonus:</span>&nbsp;
-        <select>
-          <option>-</option>
-          <option>Strength</option>
-          <option>Dexterity</option>
-          <option>Constitution</option>
-          <option>Intellect</option>
-          <option>Wisdom</option>
-          <option>Charisma</option>
-        </select>
+        <span class="stat_label">{{abilityLabels[0]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[0], 0)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[0] + raceOrClassBonus[0]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[0], 0)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[0]}}</span>
       </p>
       <p>
-        <span class="bonus_dropdown" disabled >Class Bonus:</span>&nbsp;
-        <select>
-          <option>-</option>
-          <option>Strength</option>
-          <option>Dexterity</option>
-          <option>Constitution</option>
-          <option>Intellect</option>
-          <option>Wisdom</option>
-          <option>Charisma</option>
-        </select>
+        <span class="stat_label">{{abilityLabels[1]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[1], 1)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[1] + raceOrClassBonus[1]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[1], 1)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[1]}}</span>
       </p>
-    </div>
+      <p>
+        <span class="stat_label">{{abilityLabels[2]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[2], 2)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[2] + raceOrClassBonus[2]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[2], 2)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[2]}}</span>
+      </p>
+      <p>
+        <span class="stat_label">{{abilityLabels[3]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[3], 3)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[3] + raceOrClassBonus[3]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[3], 3)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[3]}}</span>
+      </p>
+      <p>
+        <span class="stat_label">{{abilityLabels[4]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[4], 4)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[4] + raceOrClassBonus[4]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[4], 4)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[4]}}</span>
+      </p>
+      <p>
+        <span class="stat_label">{{abilityLabels[5]}}</span>
+        <button class="button" ng-click="decrementScore(pointBuyScore[5], 5)">-</button>&nbsp;
+        <span class="key_number">{{pointBuyScore[5] + raceOrClassBonus[5]}}</span>
+        &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[5], 5)">+</button>
+        {{modLabel}}<span class="key_number">{{abilityMod[5]}}</span>
+      </p>
   </div>
 </body>
 </html>
