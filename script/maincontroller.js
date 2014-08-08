@@ -157,7 +157,7 @@ app.controller('MainController', function($scope) {
     } else if(attribute == "None"){
       // remove all class bonuses for all attributes
       for (var i = 0; i < 6; i++){
-        $scope.racialBonus[i] = 0;
+        $scope.classBonus[i] = 0;
       }
       $scope.updateAbilityMods();
       // search the racialBonus array for a missing attribute
