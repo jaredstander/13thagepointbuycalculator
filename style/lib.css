@@ -6,5 +6,5 @@ body {margin:0; padding:3%; font-family:sans-serif;}
 .key_number { font-weight:bold; }
 .stat_label {display:inline-block; width:50px;}
 .button {width:40px; height:40px; padding:6px; background-color: #000; color:#fff; font-weight:bold; border:none; border-radius: 30px; -moz-border-radius:40px; text-align:center; vertical-align:}
-.dropdown_label {display:inline-block; width:125px;}
+.dropdown_label {display:inline-block; width:150px;}
 p {font-size:large;}

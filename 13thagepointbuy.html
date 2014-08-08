@@ -24,45 +24,55 @@
       <p>
         <span class="stat_label">{{abilityLabels[0]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[0], 0)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[0] + raceOrClassBonus[0]}}</span>
+        <span class="key_number">{{pointBuyScore[0] + racialBonus[0] + classBonus[0]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[0], 0)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[0]}}</span>
       </p>
       <p>
         <span class="stat_label">{{abilityLabels[1]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[1], 1)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[1] + raceOrClassBonus[1]}}</span>
+        <span class="key_number">{{pointBuyScore[1] + racialBonus[1] + classBonus[1]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[1], 1)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[1]}}</span>
       </p>
       <p>
         <span class="stat_label">{{abilityLabels[2]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[2], 2)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[2] + raceOrClassBonus[2]}}</span>
+        <span class="key_number">{{pointBuyScore[2] + racialBonus[2] + classBonus[2]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[2], 2)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[2]}}</span>
       </p>
       <p>
         <span class="stat_label">{{abilityLabels[3]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[3], 3)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[3] + raceOrClassBonus[3]}}</span>
+        <span class="key_number">{{pointBuyScore[3] + racialBonus[3] + classBonus[3]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[3], 3)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[3]}}</span>
       </p>
       <p>
         <span class="stat_label">{{abilityLabels[4]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[4], 4)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[4] + raceOrClassBonus[4]}}</span>
+        <span class="key_number">{{pointBuyScore[4] + racialBonus[4] + classBonus[4]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[4], 4)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[4]}}</span>
       </p>
       <p>
         <span class="stat_label">{{abilityLabels[5]}}</span>
         <button class="button" ng-click="decrementScore(pointBuyScore[5], 5)">-</button>&nbsp;
-        <span class="key_number">{{pointBuyScore[5] + raceOrClassBonus[5]}}</span>
+        <span class="key_number">{{pointBuyScore[5] + racialBonus[5] + classBonus[5]}}</span>
         &nbsp;<button class="button" ng-click="incrementScore(pointBuyScore[5], 5)">+</button>
         {{modLabel}}<span class="key_number">{{abilityMod[5]}}</span>
       </p>
+    </div>
+    <div id="race_and_class">
+      <hr>
+      <p><span class="dropdown_label">Racial Bonus:&nbsp;</span>
+        <select ng-model="racialAbilityScoreSelected" ng-change="selectRaceBonus(racialAbilityScoreSelected.label, racialAbilityScoreSelected.id)" ng-options="racialStat as racialStat.label for racialStat in racialStats"></select>
+      </p>
+      <p><span class="dropdown_label">Class Bonus:&nbsp;</span>
+        <select ng-model="classAbilityScoreSelected" ng-change="selectClassBonus(classAbilityScoreSelected.label, classAbilityScoreSelected.id)" ng-options="classStat as classStat.label for classStat in classStats"></select>
+      </p>
+    </div>
   </div>
 </body>
 </html>
