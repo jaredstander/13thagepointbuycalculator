@@ -65,7 +65,7 @@
     <div id="race_and_class">
       <hr>
       <p><span class="dropdown_label">Racial Bonus:&nbsp;</span>
-        <select ng-model="racialAbilityScoreSelected" ng-change="selectRaceBonus(racialAbilityScoreSelected.label, racialAbilityScoreSelected.id)" ng-options="racialStat as racialStat.label for racialStat in racialStats"></select>
+        <select ng-model="racialAbilityScoreSelected" ng-change="selectRacialBonus(racialAbilityScoreSelected.label, racialAbilityScoreSelected.id)" ng-options="racialStat as racialStat.label for racialStat in racialStats"></select>
       </p>
       <p><span class="dropdown_label">Class Bonus:&nbsp;</span>
         <select ng-model="classAbilityScoreSelected" ng-change="selectClassBonus(classAbilityScoreSelected.label, classAbilityScoreSelected.id)" ng-options="classStat as classStat.label for classStat in classStats"></select>
