@@ -1,11 +1,16 @@
 body {margin:2%; padding:0; font-family:sans-serif; background:url("../images/background.jpg") no-repeat fixed center; background-size:cover;}
 span {display:inline-block;}
+h2 {margin-top:0; margin-bottom:2%; text-align:center;}
+p {text-align:center;}
+hr {padding:0; border:none; border-top:medium double #000; color:#000;}
+a:link,a:visited,a:hover,a:active {color:#f00; text-decoration:none;}
+select {background-color:#fff; color:#000; font-size:1em; border:none; border-radius:1em; padding-left:3px; padding-right:3px;}
 #main {padding:0; margin:0 auto;}
 #points {display:inline-block; width:auto; margin:0; padding:0; font-size:1em;}
 #stats {display:inline-block; width:100%; margin:0; padding:0; text-align:center; font-size:0.9em;}
 #race_and_class {display:inline-block; width:100%; margin:0; padding:0; font-size:1em;}
 #errata {display:inline-block; width:100%; margin:0; padding:0; font-size:0.75em;}
-.errata_p {text-align:justify; text-justify:inter-word;}
+#errata p {text-align:justify; text-justify:inter-word;}
 #copyright {text-align:center; font-size:0.5em;}
 .points_label {width:48%; text-align:left;}
 .points_remaining {width:48%; font-weight:bold; text-align:right;}
@@ -17,8 +22,13 @@ span {display:inline-block;}
 .stats_key_number {font-weight:bold;}
 .race_and_class_dropdown_label {width:40%; text-align:left;}
 .race_and_class_dropdown {width:56%; text-align:right;}
-p {text-align:center; clear:both;}
-#stats p {margin-top:3%; margin-bottom:3%;}
-h2 {margin-top:0; margin-bottom:2%; text-align:center;}
-hr {padding:0; border:none; border-top:medium double #000; color:#000;}
-select {background-color:#fff; color:#000; font-size:1em; border:none; border-radius:1em; padding-left:3px; padding-right:3px;}
+
+  /* So, these are extra margin values for mobile.
+    They expand the space inbetween clickable elements.
+    It kind of wrecks the whle thing being able to show
+    up all on one screen on desktop, so I'm leaving it
+    turned off for now. Later, if need be, I can active these. */
+/* #stats p {margin-top:0.5in;} */
+/* #stats p:last-of-type {margin-bottom:0.5in;} */
+/* #race_and_class p {margin-top:0.5in;} */
+/* #race_and_class p:last-of-type {margin-bottom:0.5in;} */
