@@ -15,62 +15,110 @@
     <div id="points">
       <h2>13th Age Point Buy Calculator</h2>
       <hr />
-      <p>Points Left: <span class="points_remaining_label"><span class="key_number">{{pointsLeft}}</span></span></p>
+      <p><span class="points_label">Points Left:&nbsp;</span><span class="points_remaining"><span class="key_number">{{pointsLeft}}</span></span></p>
       <hr />
+      <div id="container">
+        <div id="stats">
+          <p>
+            <span class="stats_label">{{abilityLabels[0]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[0], 0)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[0] + racialBonus[0] + classBonus[0]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[0], 0)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[0]}}</span>
+            </span>
+          </p>
+          <p>
+            <span class="stats_label">{{abilityLabels[1]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[1], 1)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[1] + racialBonus[1] + classBonus[1]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[1], 1)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[1]}}</span>
+            </span>
+          </p>
+          <p>
+            <span class="stats_label">{{abilityLabels[2]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[2], 2)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[2] + racialBonus[2] + classBonus[2]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[2], 2)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[2]}}</span>
+            </span>
+          </p>
+          <p>
+            <span class="stats_label">{{abilityLabels[3]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[3], 3)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[3] + racialBonus[3] + classBonus[3]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[3], 3)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[3]}}</span>
+            </span>
+          </p>
+          <p>
+            <span class="stats_label">{{abilityLabels[4]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[4], 4)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[4] + racialBonus[4] + classBonus[4]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[4], 4)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[4]}}</span>
+            </span>
+          </p>
+          <p>
+            <span class="stats_label">{{abilityLabels[5]}}</span>&nbsp;
+            <span class="stats_buttons_and_score">
+              <button class="stats_button" ng-click="decrementScore(pointBuyScore[5], 5)">-</button>&nbsp;
+              <span class="stats_score_label">
+                <span class="stats_key_number">{{pointBuyScore[5] + racialBonus[5] + classBonus[5]}}</span>
+              </span>&nbsp;
+              <button class="stats_button" ng-click="incrementScore(pointBuyScore[5], 5)">+</button>&nbsp;
+            </span>
+            <span class="stats_mod_label">{{modLabel}}
+              <span class="stats_key_number">{{abilityMod[5]}}</span>
+            </span>
+          </p>
+        </div>
+        <div id="race_and_class">
+          <hr />
+          <p>
+            <span class="race_and_class_dropdown_label">Racial Bonus:&nbsp;</span>
+            <span class="race_and_class_dropdown">
+              <select ng-model="racialAbilityScoreSelected" ng-change="selectRacialBonus(racialAbilityScoreSelected.label, racialAbilityScoreSelected.id)" ng-options="racialStat as racialStat.label for racialStat in racialStats"></select>
+            </span>
+          </p>
+          <p>
+            <span class="race_and_class_dropdown_label">Class Bonus:&nbsp;</span>
+            <span class="race_and_class_dropdown">
+              <select ng-model="classAbilityScoreSelected" ng-change="selectClassBonus(classAbilityScoreSelected.label, classAbilityScoreSelected.id)" ng-options="classStat as classStat.label for classStat in classStats"></select>
+            </span>
+          </p>
+        </div>
+        <div id="errata">
+          <p class="errata_p">Recent changes: Added a background image to make things look pretty. Color scheme and hr tag formatting. Text resising. Elements revamped to scale better on mobile devices, down to iPhone 4 resolution.</p>
+          <p class="errata_p">Want to see how this actually works? Code available <a href="https://github.com/jaredstander/13thagepointbuycalculator">here</a> and is under the <a href="https://opensource.org/licenses/MIT">MIT Liscense</a>: Knowledge is power and this code can be used anywhere, by anyone, in anything, for free. Hopefully to help someone learn more about Angular. Uhhh, except for the background image. The background is from <a href="http://game.wall404.com/the_elder_scrolls_online-4k-game-high_resolution-fighting-monster-fantasy-3840x2160/">this</a> page and used without permission because there was no artist listed, so I can't give you permission to reuse that. If you <em>are</em> the artist who created this image, my sincerest appologies for using this uncredited. You can contact me <a href="mailto:jared@jaredstander.com">here</a>, and I will credit you and/or remove it immediately.</p>
+          <p id="copyright">Copyright &copy; 2016 Jared Stander</p>
+        </div>
+      </div>
     </div>
-    <div id="stats">
-      <p>
-        <span class="stat_label">{{abilityLabels[0]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[0], 0)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[0] + racialBonus[0] + classBonus[0]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[0], 0)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[0]}}</span></span>
-      </p>
-      <p>
-        <span class="stat_label">{{abilityLabels[1]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[1], 1)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[1] + racialBonus[1] + classBonus[1]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[1], 1)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[1]}}</span></span>
-      </p>
-      <p>
-        <span class="stat_label">{{abilityLabels[2]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[2], 2)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[2] + racialBonus[2] + classBonus[2]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[2], 2)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[2]}}</span></span>
-      </p>
-      <p>
-        <span class="stat_label">{{abilityLabels[3]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[3], 3)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[3] + racialBonus[3] + classBonus[3]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[3], 3)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[3]}}</span></span>
-      </p>
-      <p>
-        <span class="stat_label">{{abilityLabels[4]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[4], 4)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[4] + racialBonus[4] + classBonus[4]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[4], 4)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[4]}}</span></span>
-      </p>
-      <p>
-        <span class="stat_label">{{abilityLabels[5]}}</span>
-        <button class="button" ng-click="decrementScore(pointBuyScore[5], 5)">-</button>
-        <span class="score_label"><span class="key_number">{{pointBuyScore[5] + racialBonus[5] + classBonus[5]}}</span></span>
-        <button class="button" ng-click="incrementScore(pointBuyScore[5], 5)">+</button><span class="mod_label">
-        {{modLabel}}<span class="key_number">{{abilityMod[5]}}</span></span>
-      </p>
-    </div>
-    <div id="race_and_class">
-      <hr />
-      <p><span class="dropdown_label">Racial Bonus:&nbsp;</span>
-        <span class="dropdown"><select ng-model="racialAbilityScoreSelected" ng-change="selectRacialBonus(racialAbilityScoreSelected.label, racialAbilityScoreSelected.id)" ng-options="racialStat as racialStat.label for racialStat in racialStats"></select></span>
-      </p>
-      <p><span class="dropdown_label">Class Bonus:&nbsp;</span>
-        <span class="dropdown"><select ng-model="classAbilityScoreSelected" ng-change="selectClassBonus(classAbilityScoreSelected.label, classAbilityScoreSelected.id)" ng-options="classStat as classStat.label for classStat in classStats"></select></span>
-      </p>
-    </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
