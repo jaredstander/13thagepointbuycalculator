@@ -1,1 +1,0 @@
-var app = angular.module('13thAgePointBuy', []);
