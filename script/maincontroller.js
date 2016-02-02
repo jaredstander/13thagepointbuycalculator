@@ -26,7 +26,7 @@ app.controller('MainController', function($scope) {
   $scope.classAbilityScoreSelected = $scope.classStats[0];
 
   // Calculates the ability mod provided by a specific score.
-  $scope.getAbilityMod = function(abilityScore){ return parseInt(Math.floor((abilityScore / 2) - 5)) };
+  $scope.getAbilityMod = function(abilityScore){ return parseInt(Math.floor((abilityScore / 2) - 5)); };
 
   /* Updates the ability mod on the page using all contributing factors; the raw ability score, the race bonus,
      and the class bonus. In this way we can call one single function when spending points, selecting a
@@ -34,7 +34,7 @@ app.controller('MainController', function($scope) {
      this function into the increment, decrement, and bonus seletion functions. What a waste of code that would
      be. This also helps avoid innaccurate mod scores because we 'left out' one of the contributing factors
      when making an update. */
-  $scope.setAbilityMod = function(index){ $scope.abilityMod[index] = parseInt($scope.getAbilityMod($scope.pointBuyScore[index] + $scope.racialBonus[index] + $scope.classBonus[index]))};
+  $scope.setAbilityMod = function(index){ $scope.abilityMod[index] = parseInt($scope.getAbilityMod($scope.pointBuyScore[index] + $scope.racialBonus[index] + $scope.classBonus[index])); };
 
   $scope.getPointValue = function(abilityScore){
     /* "return (parseInt(abilityScore) - 8)" Does not work when calculating the point costs for a stat increase
@@ -126,7 +126,7 @@ app.controller('MainController', function($scope) {
 
             The Array Racial bonus for strength is at $scope.racialBonus[0]
             The ID of the strength record in our hash is 0.
-            So the hash record ID === the array index for the strength.
+            So the hash record ID == the array index for the strength.
 
            So, if the ID isn't present in the hash at all OR if we find a point where the hash record's ID at index i
            doesn't match value of i - 1 (remember the IDs in the hash records starts at -1, not 0) we take the stat
@@ -160,8 +160,13 @@ app.controller('MainController', function($scope) {
     if($scope.racialBonus.indexOf(2) >= 0) {
       /* We basically check the array of racial bonus scores to see what stat already had a bonus.
          If so, we need to reset that before applying the new bonus or else the bonuses will just keep
-         stacking instead of replacing. */
-      $scope.racialBonus[$scope.racialBonus.indexOf(2)] = 0;
+         stacking instead of replacing.
+
+         UPDATE: So, previously, I did not recalculate the ability mod after we remove the previous bonus.
+         Lines 167 and 169 fix this bug. */
+      previousBonusIndex = $scope.racialBonus.indexOf(2);
+      $scope.racialBonus[previousBonusIndex] = 0;
+      $scope.setAbilityMod(previousBonusIndex);
     }
     
     /* Update the racial bonus score using the value property of . The optionId is the value we get from
@@ -186,7 +191,9 @@ app.controller('MainController', function($scope) {
     }
     
     if($scope.classBonus.indexOf(2) >= 0) {
+      previousBonusIndex = $scope.classBonus.indexOf(2);
       $scope.classBonus[$scope.classBonus.indexOf(2)] = 0;
+      $scope.setAbilityMod(previousBonusIndex);
     }
     
     $scope.classBonus[optionId] = $scope.classAbilityScoreSelected.value;

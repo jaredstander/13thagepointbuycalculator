@@ -9,7 +9,7 @@ select {background-color:#fff; color:#000; font-size:1em; border:none; border-ra
 #points {display:inline-block; width:auto; margin:0; padding:0; font-size:1em;}
 #stats {display:inline-block; width:100%; margin:0; padding:0; text-align:center; font-size:0.9em;}
 #race_and_class {display:inline-block; width:100%; margin:0; padding:0; font-size:1em;}
-#errata {display:inline-block; width:100%; margin:0; padding:0; font-size:0.75em;}
+#errata {display:inline-block; margin:0; padding:0; font-size:0.75em;}
 #errata p {text-align:justify; text-justify:inter-word;}
 #copyright {text-align:center; font-size:0.5em;}
 .points_label {width:48%; text-align:left;}
@@ -23,7 +23,7 @@ select {background-color:#fff; color:#000; font-size:1em; border:none; border-ra
 .race_and_class_dropdown_label {width:40%; text-align:left;}
 .race_and_class_dropdown {width:56%; text-align:right;}
 
-  /* So, these are extra margin values for mobile.
+  /* These are extra margin values for mobile.
     They expand the space inbetween clickable elements.
     It kind of wrecks the whle thing being able to show
     up all on one screen on desktop, so I'm leaving it
