@@ -1,23 +1,24 @@
-body {margin:0; padding:0; font-family:sans-serif; font-size:10pt; background:url("../images/background.jpg") no-repeat fixed center; background-size:cover;}
+:root {font-size:5vw;}
+body {margin:0; padding:2%; font-family:sans-serif; background:url("../images/background.jpg") no-repeat fixed center; background-size:cover;}
 span {display:inline-block;}
-h3 {margin:5% 0; text-align:center;}
 p {text-align:center; clear:both;}
 hr {padding:0; border:none; border-top:medium double #000; color:#000;}
-button {width:0.5in; height:0.5in; padding:0; background-color:#fff; font-weight:bold; border:none;}
-select {height:0.5in; background-color:#fff; color:#000; border:none; padding:0 5px;}
+button {width:10vw; height:10vw; font-size:4vw; padding:0; background-color:#fff; font-weight:bold; border:none;}
+select {height:10vw; font-size:5vw; background-color:#fff; color:#000; border:none; padding:0;}
 a:link,a:visited,a:hover,a:active {color:#f00; text-decoration:none;}
-#main {padding:5px; margin:0 auto; width:310px;}
-#container, #points, #stats, #race_and_class, #errata, #copyright {display:inline-block; width:100%; margin:0; padding:0;}
+#title, #points, #stats, #race_and_class, #errata, #copyright {display:inline-block; width:100%; margin:0; padding:0;}
+#stats p {height:10vw;}
+#title {text-align:center;}
 #errata p {text-align:justify; text-justify:auto; width:auto;}
 .points_label {width:48%; text-align:left;}
 .points_remaining {width:48%; font-weight:bold; text-align:right;}
-.stats_label {float:left; line-height:0.5in; width:50px;}
-.stats_score_label {width:0.5in;}
-.stats_mod_label {float:right; line-height:0.5in;}
-.stats_key_number {width:1em; font-weight:bold;}
+.stats_label, .stats_buttons_and_score, .stats_score_label, .stats_mod_label, .stats_key_number {line-height:10vw;}
+.stats_label {float:left; width:24vw; text-align:left;}
+.stats_mod_label {float:right; width:24vw; text-align:right;}
+.stats_key_number {width:10vw; font-weight:bold;}
 .race_and_class_dropdown_label {width:40%; text-align:left;}
 .race_and_class_dropdown {width:56%; text-align:right;}
-
+@media (min-width:600px){:root {font-size:1vw;} button {width:5vw; height:5vw; font-size:1vw;} select {height:5vw; font-size:1vw;}}
   /* These are extra margin values for mobile.
     They expand the space inbetween clickable elements.
     It kind of wrecks the whle thing being able to show
